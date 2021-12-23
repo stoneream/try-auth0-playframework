@@ -7,6 +7,7 @@
 GET / controllers.HomeController.index()
 GET /profile controllers.HomeController.profile()
 GET /login controllers.SessionController.login()
+GET /logout controllers.SessionController.logout()
 GET /callback controllers.SessionController.callback()
 
 # Map static resources from the /public folder to the /assets URL path

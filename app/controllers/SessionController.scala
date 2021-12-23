@@ -21,7 +21,6 @@ class SessionController @Inject() (
     configurations: Configuration,
     sessionAccessor: SessionAccessor
 ) extends AbstractController(controllerComponents) {
-
   // ログイン（認可リクエスト画面へリダイレクトが発生するのみ）
   // stateはセッションに保持
   def login = userAction.optional { implicit request: Request[AnyContent] =>
@@ -40,6 +39,17 @@ class SessionController @Inject() (
     )
 
     sessionAccessor.setState(state)(Redirect(url, param))
+  }
+
+  case class AuthorizationRequestResponse(
+      access_token: String,
+      id_token: String,
+      scope: String,
+      expires_in: Int,
+      token_type: String
+  )
+  object AuthorizationRequestResponse {
+    val reads = Json.reads[AuthorizationRequestResponse]
   }
 
   // 認可レスポンスを受け取るエンドポイント
@@ -90,16 +100,16 @@ class SessionController @Inject() (
         }
     }
   }
-}
 
-case class AuthorizationRequestResponse(
-    access_token: String,
-    id_token: String,
-    scope: String,
-    expires_in: Int,
-    token_type: String
-)
+  def logout = userAction.normal { implicit request =>
+    // https://auth0.com/docs/login/logout
+    // https://auth0.com/docs/api/authentication#logout
+    val url = s"https://${configurations.auth0_domain}/v2/logout"
+    val param = Map(
+      "client_id" -> Seq(configurations.auth0_client_id),
+      "returnTo" -> Seq(configurations.auth0_logout_callback_url)
+    )
 
-object AuthorizationRequestResponse {
-  val reads = Json.reads[AuthorizationRequestResponse]
+    sessionAccessor.removeAccessToken(request)(Redirect(url, param))
+  }
 }

@@ -10,6 +10,8 @@ class SessionAccessor {
 
   def getAccessToken(request: RequestHeader) = request.session.get(sessionAccessToken)
 
+  def removeAccessToken(request: RequestHeader)(result: Result) = result.removingFromSession(sessionAccessToken)(request)
+
   def setState(state: String)(result: Result) = result.withSession(sessionState -> state)
 
   def getState(request: RequestHeader) = request.session.get(sessionState)

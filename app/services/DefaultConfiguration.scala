@@ -13,4 +13,6 @@ class DefaultConfiguration @Inject() (configuration: play.api.Configuration) ext
   override def auth0_client_secret: String = orError("auth0.client.secret")
 
   override def auth0_callback_url: String = orError("auth0.callback.url")
+
+  def auth0_logout_callback_url: String = orError("auth0.logout.callback.url")
 }
