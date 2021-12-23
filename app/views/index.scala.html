@@ -1,0 +1,12 @@
+@(userProfileOpt: Option[UserProfile])
+
+@main("Welcome to Play") {
+  <h1>Welcome to Play!</h1>
+
+
+  @userProfileOpt.fold {
+    <a href="/login">login here!</a>
+  } { userProfile =>
+    <p>こんにちは！@{userProfile.nickname}さん！</p>
+  }
+}
