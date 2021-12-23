@@ -11,7 +11,7 @@ Get Started : https://auth0.com/docs/get-started
 
 # 実装について
 
-以下のドキュメントを参考に実装。  
+以下のドキュメントを参考に実装しました。  
 Call Your API Using the Authorization Code Flow : https://auth0.com/docs/authorization/flows/call-your-api-using-the-authorization-code-flow  
 
 取得したアクセストークンはセッションに保持してます。  
