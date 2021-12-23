@@ -16,6 +16,7 @@ class HomeController @Inject() (
   }
 
   // プロフィール
+  // 非ログイン時はログイン画面へ遷移する
   def profile = userAction.normal { implicit request =>
     Ok(views.html.profile(request.userProfile))
   }
