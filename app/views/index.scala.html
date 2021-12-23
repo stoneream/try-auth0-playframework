@@ -1,4 +1,4 @@
-@(userProfileOpt: Option[UserProfile])
+@(userProfileOpt: Option[auth.UserProfile])
 
 @main("Welcome to Play") {
   <h1>Welcome to Play!</h1>
@@ -7,6 +7,6 @@
   @userProfileOpt.fold {
     <a href="/login">login here!</a>
   } { userProfile =>
-    <p>こんにちは！@{userProfile.nickname}さん！</p>
+    <p>こんにちは！<a href="/profile">@{userProfile.nickname}</a>さん！</p>
   }
 }

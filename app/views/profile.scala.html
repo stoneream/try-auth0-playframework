@@ -1,0 +1,7 @@
+@(userProfile: auth.UserProfile)
+
+@main("Profile") {
+    <h1>Profile</h1>
+    <p>nickname : @{userProfile.nickname}</p>
+    <p>email : @{userProfile.email}</p>
+}
