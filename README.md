@@ -19,8 +19,8 @@ Call Your API Using the Authorization Code Flow : https://auth0.com/docs/authori
 
 # auth0の設定
 
-auth0自体の設定はdocs以下に格納。  
-application.confを作成し以下の項目を設定する。  
+auth0自体の設定はdocs以下に格納しています。  
+application.confを作成し以下の項目を設定してください。  
 
 - auth0のダッシュボードを確認してdomain, client.id, client.secretを設定してください。
 - 必要に応じてcallback.url, logout.callback.urlも設定する。
